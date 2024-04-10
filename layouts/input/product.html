@@ -1,0 +1,44 @@
+<!-- input_graph.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Graph</title>
+    <!-- Include any necessary CSS or JavaScript libraries for graph generation -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Input Graph</h1>
+    <div>
+        <label for="data">Enter Data (comma-separated):</label>
+        <input type="text" id="data">
+        <button onclick="generateGraph()">Generate Graph</button>
+    </div>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        function generateGraph() {
+            // Get data from input field
+            var inputData = document.getElementById("data").value.split(",").map(Number);
+            
+            // Example: Generate a line chart using Chart.js library
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from(Array(inputData.length).keys()), // Assuming x-axis labels are indices
+                    datasets: [{
+                        label: 'Data',
+                        data: inputData,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+            });
+        }
+    </script>
+</body>
+</html>
